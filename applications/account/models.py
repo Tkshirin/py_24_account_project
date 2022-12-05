@@ -59,3 +59,12 @@ class CustomUser(AbstractUser):
         code = str(uuid.uuid4())
         self.activation_code = code
 
+
+class Book(models.Model):
+
+    title = models.CharField(max_length=50)
+    descriptions = models.TextField(blank=True, null=True)
+    owner = models.ForeignKey(
+                              CustomUser,
+                              on_delete=models.CASCADE,
+                              related_name='products')
